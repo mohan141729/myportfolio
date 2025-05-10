@@ -2,16 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { MdOutlineChevronLeft, MdOutlineChevronRight } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import axios from "axios";
-
-const fetchProjects = async () => {
-  try {
-    const response = await axios.get("http://localhost:5000/projects");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-    return [];
-  }
-};
+import { API_URL } from "../config";
 
 const ProjectSection = () => {
   const carouselRef = useRef(null);
@@ -21,7 +12,16 @@ const ProjectSection = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetchProjects().then(setProjects);
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/projects`);
+        setProjects(response.data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
   useEffect(() => {

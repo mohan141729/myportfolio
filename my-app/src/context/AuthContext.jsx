@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import { API_URL } from '../config';
 
 const AuthContext = createContext(null);
 
@@ -21,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       setError('');
-      const response = await axios.post('http://localhost:5000/admin-login', {
+      const response = await axios.post(`${API_URL}/admin-login`, {
         email,
         password
       });
@@ -38,7 +39,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       setError('');
-      const response = await axios.post('http://localhost:5000/verify-admin-login', {
+      const response = await axios.post(`${API_URL}/verify-admin-login`, {
         email,
         code
       });
@@ -71,13 +72,13 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       setError("");
       
-      console.log('Making request to send verification code to:', email); // Debug log
+      console.log('Making request to send verification code to:', email);
       
-      const response = await axios.post("http://localhost:5000/send-update-verification", {
+      const response = await axios.post(`${API_URL}/send-update-verification`, {
         email: email
       });
 
-      console.log('Server response:', response.data); // Debug log
+      console.log('Server response:', response.data);
 
       if (response.data.message) {
         return true;
@@ -100,7 +101,7 @@ export const AuthProvider = ({ children }) => {
     try {
       setLoading(true);
       setError('');
-      const response = await axios.post('http://localhost:5000/update-admin-credentials', {
+      const response = await axios.post(`${API_URL}/update-admin-credentials`, {
         email,
         verificationCode,
         newEmail,

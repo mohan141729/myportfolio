@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { API_URL } from "../config";
 
 
 const ContactSection = () => {
@@ -13,9 +14,11 @@ const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/admin-details")
-      .then((response) => setAdminDetails(response.data))
-      .catch((error) => {
+    const fetchAdminDetails = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/admin-details`);
+        setAdminDetails(response.data);
+      } catch (error) {
         console.error("Error fetching admin details:", error);
         // fallback defaults if needed
         setAdminDetails({
@@ -23,7 +26,10 @@ const ContactSection = () => {
           email: "techlearn2005@example.com",
           phone: "6300097734"
         });
-      });
+      }
+    };
+
+    fetchAdminDetails();
   }, []);
 
   const handleChange = (e) => {
@@ -33,7 +39,7 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/feedback", feedback);
+      await axios.post(`${API_URL}/feedback`, feedback);
       setSubmitted(true);
       setFeedback({ name: "", email: "", message: "" });
     } catch (error) {

@@ -4,6 +4,7 @@ import { FiEdit, FiTrash } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import UpdateCredentialsModal from "../components/UpdateCredentialsModal";
+import { API_URL } from "../config";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const AdminDashboard = () => {
   // Fetch Projects
   const fetchProjects = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/projects");
+      const response = await axios.get(`${API_URL}/projects`);
       setProjects(response.data);
     } catch (error) {
       console.error("Error fetching projects:", error);
@@ -52,7 +53,7 @@ const AdminDashboard = () => {
   // Fetch Feedbacks
   const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/feedback");
+      const response = await axios.get(`${API_URL}/feedback`);
       setFeedbacks(response.data);
     } catch (error) {
       console.error("Error fetching feedbacks:", error);
@@ -62,7 +63,7 @@ const AdminDashboard = () => {
   // Fetch Admin Details
   const fetchAdminDetails = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/admin-details");
+      const response = await axios.get(`${API_URL}/admin-details`);
       setAdminDetails(response.data);
       setAdminForm(response.data);
     } catch (error) {
@@ -96,10 +97,10 @@ const AdminDashboard = () => {
     e.preventDefault();
     try {
       if (editingProject) {
-        await axios.put(`http://localhost:5000/projects/${editingProject.id}`, formData);
+        await axios.put(`${API_URL}/projects/${editingProject.id}`, formData);
         alert("Project updated successfully");
       } else {
-        await axios.post("http://localhost:5000/projects", formData);
+        await axios.post(`${API_URL}/projects`, formData);
         alert("Project added successfully");
       }
       setFormData({
@@ -136,7 +137,7 @@ const AdminDashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/projects/${id}`);
+      await axios.delete(`${API_URL}/projects/${id}`);
       fetchProjects();
     } catch (error) {
       console.error("Error deleting project:", error);
@@ -146,7 +147,7 @@ const AdminDashboard = () => {
   // Handlers for feedback messages
   const handleFeedbackDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/feedback/${id}`);
+      await axios.delete(`${API_URL}/feedback/${id}`);
       fetchFeedbacks();
     } catch (error) {
       console.error("Error deleting feedback:", error);
@@ -169,7 +170,7 @@ const AdminDashboard = () => {
   const handleAdminDetailsSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put("http://localhost:5000/admin-details", adminForm);
+      await axios.put(`${API_URL}/admin-details`, adminForm);
       alert("Admin details updated successfully");
       fetchAdminDetails();
     } catch (error) {

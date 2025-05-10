@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-// Function to fetch projects from the API
-const fetchProjects = async () => {
-  try {
-    const response = await axios.get("http://localhost:5000/projects");
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-    return [];
-  }
-};
+import { API_URL } from "../config";
 
 // Reusable Circular Progress Bar Component
 const CircularProgressBar = ({
@@ -70,7 +60,16 @@ const About = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetchProjects().then(setProjects);
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get(`${API_URL}/projects`);
+        setProjects(response.data);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
   // Compute total projects and category counts
