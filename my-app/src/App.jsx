@@ -7,12 +7,12 @@ import { AuthProvider } from "./context/AuthContext";
 
 const App = () => (
   <AuthProvider>
-  <Router>
-    <Routes>
-      <Route path="/" element={<LoadingPage />} />
-      <Route path="/admin" element={<AdminDashboard />} />
-    </Routes>
-  </Router>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoadingPage />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+      </Routes>
+    </Router>
   </AuthProvider>
 );
 
