@@ -1,13 +1,13 @@
 // loadingPage.jsx
 import React from "react";
-import Navbar from "../components/Navbar.jsx";
-import HeroSection from "../components/HeroSection.jsx";
-import AboutSection from "../components/AboutSection.jsx";
-import ProjectSection from "../components/ProjectSection.jsx";
-import SkillsSection from "../components/SkillsSection.jsx";
-import ServicesSection from "../components/ServicesSection.jsx";
-import ContactSection from "../components/ContactSection.jsx";
-import FooterSection from "../components/FooterSection.jsx";
+import Navbar from "@components/Navbar";
+import HeroSection from "@components/HeroSection";
+import AboutSection from "@components/AboutSection";
+import ProjectSection from "@components/ProjectSection";
+import SkillsSection from "@components/SkillsSection";
+import ServicesSection from "@components/ServicesSection";
+import ContactSection from "@components/ContactSection";
+import FooterSection from "@components/FooterSection";
 
 const LoadingPage = () => {
   return (
