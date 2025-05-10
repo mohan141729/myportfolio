@@ -162,7 +162,7 @@ const generateVerificationCode = () => {
 app.post('/admin-login', async (req, res) => {
   try {
     const { email, password } = req.body;
-
+    
     // First check if the email exists in admin_credentials
     db.get("SELECT * FROM admin_credentials WHERE email = ?", [email], async (err, row) => {
       if (err) {
@@ -251,8 +251,8 @@ app.post('/verify-admin-login', (req, res) => {
         );
 
         // Remove the used verification code
-        verificationCodes.delete(email);
-        
+    verificationCodes.delete(email);
+    
         res.json({ 
           message: "Login successful",
           token,
@@ -544,41 +544,41 @@ app.post('/update-admin-credentials', async (req, res) => {
       }
 
       // Update credentials
-      db.run(
-        `UPDATE admin_credentials 
-         SET email = ?, email_password = ?, password = ?
-         WHERE id = 1`,
-        [newEmail, newEmailPassword, newPassword],
-        function(err) {
-          if (err) {
-            console.error("Error updating admin credentials:", err);
-            return res.status(500).json({ error: "Failed to update admin credentials" });
-          }
-
-          // Update admin_details table email as well
-          db.run(
-            "UPDATE admin_details SET email = ? WHERE id = 1",
-            [newEmail],
-            (err) => {
-              if (err) {
-                console.error("Error updating admin_details:", err);
-                return res.status(500).json({ error: "Failed to update admin details" });
-              }
-
-              // Update email configuration
-              transporter.set("auth", {
-                user: newEmail,
-                pass: newEmailPassword
-              });
-
-              // Remove the used verification code
-              verificationCodes.delete(email);
-              
-              res.json({ message: "Admin credentials updated successfully" });
-            }
-          );
+    db.run(
+      `UPDATE admin_credentials 
+       SET email = ?, email_password = ?, password = ?
+       WHERE id = 1`,
+      [newEmail, newEmailPassword, newPassword],
+      function(err) {
+        if (err) {
+          console.error("Error updating admin credentials:", err);
+          return res.status(500).json({ error: "Failed to update admin credentials" });
         }
-      );
+
+        // Update admin_details table email as well
+        db.run(
+          "UPDATE admin_details SET email = ? WHERE id = 1",
+          [newEmail],
+          (err) => {
+            if (err) {
+              console.error("Error updating admin_details:", err);
+              return res.status(500).json({ error: "Failed to update admin details" });
+            }
+
+            // Update email configuration
+            transporter.set("auth", {
+              user: newEmail,
+              pass: newEmailPassword
+            });
+
+            // Remove the used verification code
+            verificationCodes.delete(email);
+            
+            res.json({ message: "Admin credentials updated successfully" });
+          }
+        );
+      }
+    );
     });
   } catch (error) {
     console.error('Error updating admin credentials:', error);
