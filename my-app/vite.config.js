@@ -9,7 +9,8 @@ export default defineConfig({
   ],
   resolve: {
     preserveSymlinks: true,
-    caseSensitive: true
+    caseSensitive: true,
+    extensions: ['.js', '.jsx', '.json']
   },
   build: {
     sourcemap: true,
