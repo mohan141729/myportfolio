@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import { MdOutlineChevronLeft, MdOutlineChevronRight } from "react-icons/md";
-import { IoMdClose } from "react-icons/io";
+import { MdOutlineChevronLeft, MdOutlineChevronRight, MdClose } from "react-icons/md";
 import axios from "axios";
 import { API_URL } from "../config";
 
@@ -147,7 +146,7 @@ const ProjectSection = () => {
               onClick={() => setSelectedProject(null)}
               className="absolute top-4 right-4 text-white hover:text-cyan-400 transition-all"
             >
-              <IoMdClose size={30} />
+              <MdClose size={30} />
             </button>
             <img src={selectedProject.image} alt={selectedProject.title} className="w-full h-64 object-cover" />
             <div className="p-6">
