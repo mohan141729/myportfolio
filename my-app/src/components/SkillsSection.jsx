@@ -23,7 +23,7 @@ const SkillsSection = () => {
   useEffect(() => {
     const fetchSkills = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/projects');
+        const response = await axios.get(`${API_URL}/projects`);
         const projects = response.data;
         
         // Extract unique skills from all projects
