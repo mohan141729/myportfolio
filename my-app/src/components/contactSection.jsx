@@ -49,7 +49,7 @@ const ContactSection = () => {
     : "https://maps.google.com/maps?width=100%25&height=600&hl=en&q=Izmir+(My%20Business%20Name)&ie=UTF8&t=&z=14&iwloc=B&output=embed";
 
   return (
-    <section className="text-gray-400 body-font relative bg-[#081b29]">
+    <section id="contact" className="text-gray-400 body-font relative bg-[#081b29]">
       
       <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap" >
         {/* Left: Map and Admin Details */}
@@ -58,11 +58,8 @@ const ContactSection = () => {
             width="100%"
             height="100%"
             className="absolute inset-0"
-            frameBorder="0"
             title="map"
-            marginHeight="0"
-            marginWidth="0"
-            scrolling="no"
+            style={{ border: 0 }}
             src={mapSrc}
           ></iframe>
           <div className="bg-[#081b29] relative flex flex-wrap py-6 rounded shadow-md">
@@ -78,7 +75,7 @@ const ContactSection = () => {
               <h2 className="title-font font-semibold text-white tracking-widest text-xs">
                 EMAIL
               </h2>
-              <a className="text-cyan-400 leading-relaxed">
+              <a href={`mailto:${adminDetails ? adminDetails.email : ''}`} className="text-cyan-400 leading-relaxed hover:text-cyan-300">
                 {adminDetails ? adminDetails.email : "Loading..."}
               </a>
               <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
@@ -94,7 +91,7 @@ const ContactSection = () => {
         <div className="lg:w-1/3 md:w-1/2 bg-[#0d2a3f] flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0 p-4 rounded-2xl " data-aos="fade-left">
           <h2 className="text-white text-lg mb-1 font-medium title-font">Feedback</h2>
           <p className="leading-relaxed mb-5 text-gray-300">
-            We’d love to hear from you. Please leave your message below.
+            We'd love to hear from you. Please leave your message below.
           </p>
           <form onSubmit={handleSubmit}>
             <div className="relative mb-4">

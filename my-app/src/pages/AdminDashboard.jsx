@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FiEdit, FiTrash } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import UpdateCredentialsModal from "../components/UpdateCredentialsModal";
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const { updateCredentials } = useAuth();
   const [activeSection, setActiveSection] = useState("home");
   const [projects, setProjects] = useState([]);
   const [feedbacks, setFeedbacks] = useState([]);
@@ -13,6 +16,12 @@ const AdminDashboard = () => {
     email: "",
     phone: "",
   });
+  const [adminCredentials, setAdminCredentials] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -169,6 +178,23 @@ const AdminDashboard = () => {
     }
   };
 
+  // Add new function to handle credential updates
+  const handleCredentialUpdate = (e) => {
+    e.preventDefault();
+    if (adminCredentials.password !== adminCredentials.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    if (updateCredentials(adminCredentials.email, adminCredentials.password)) {
+      alert("Credentials updated successfully!");
+      setAdminCredentials({
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    }
+  };
+
   // Fixed Sidebar Component
   const Sidebar = () => (
     <div className="fixed top-0 left-0 h-full w-64 bg-gray-800 p-6">
@@ -185,6 +211,12 @@ const AdminDashboard = () => {
           className={`cursor-pointer p-2 mb-2 rounded ${activeSection === "admin" ? "bg-blue-500" : "hover:bg-gray-700"}`}
         >
           Admin Details
+        </li>
+        <li
+          onClick={() => setActiveSection("credentials")}
+          className={`cursor-pointer p-2 mb-2 rounded ${activeSection === "credentials" ? "bg-blue-500" : "hover:bg-gray-700"}`}
+        >
+          Credentials
         </li>
         <li
           onClick={() => setActiveSection("projects")}
@@ -383,6 +415,25 @@ const AdminDashboard = () => {
     </div>
   );
 
+  // Add new section for credentials management
+  const renderCredentialsSection = () => (
+    <div className="bg-gray-800 p-6 rounded-lg mb-6">
+      <h2 className="text-xl font-semibold mb-4">Admin Credentials</h2>
+      <div className="space-y-4">
+        <p className="text-gray-300">
+          Update your admin account credentials including email, email app password, and login password.
+          A verification code will be sent to your current email address for security.
+        </p>
+        <button
+          onClick={() => setIsUpdateModalOpen(true)}
+          className="bg-[#0ef] text-black font-semibold px-4 py-2 rounded hover:bg-[#08c] transition"
+        >
+          Update Credentials
+        </button>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Fixed Sidebar */}
@@ -404,9 +455,16 @@ const AdminDashboard = () => {
           </div>
         )}
         {activeSection === "admin" && renderAdminDetailsSection()}
+        {activeSection === "credentials" && renderCredentialsSection()}
         {activeSection === "projects" && renderProjectsSection()}
         {activeSection === "contact" && renderFeedbackSection()}
       </div>
+
+      {/* Update Credentials Modal */}
+      <UpdateCredentialsModal
+        isOpen={isUpdateModalOpen}
+        onClose={() => setIsUpdateModalOpen(false)}
+      />
     </div>
   );
 };

@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 import { HashLink as Link } from "react-router-hash-link";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import LoginModal from "./LoginModal";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
   
   const navItems = [
     { id: "homeId", to: "#hero", text: "Home" },
     { id: "aboutId", to: "#about", text: "About" },
     { id: "projectsId", to: "#projects", text: "Projects" },
+    { id: "skillsId", to: "#skills", text: "Skills" },
     { id: "servicesId", to: "#services", text: "Services" },
     { id: "contactId", to: "#contact", text: "Contact" },
   ];
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <nav className="bg-[#081b29] text-gray-300 px-6 py-4 flex justify-between items-center font-sans relative pt-4 pl-16 pr-16">
@@ -44,14 +54,41 @@ const Navbar = () => {
               {item.text}
             </Link>
           ))}
-          {/* Admin Dashboard Button */}
+          {isAuthenticated ? (
+            <>
+              <button
+                onClick={() => {
+                  navigate("/admin");
+                  setIsOpen(false);
+                }}
+                className="bg-[#0ef] text-black text-lg font-semibold px-4 py-2 rounded transition-all 
+                  duration-300 hover:bg-[#08c] focus:bg-[#08c] active:bg-[#08c]"
+              >
+                Dashboard
+              </button>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="bg-red-500 text-white text-lg font-semibold px-4 py-2 rounded transition-all 
+                  duration-300 hover:bg-red-600 focus:bg-red-600 active:bg-red-600"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
           <button
-            onClick={() => navigate("/admin")}
+              onClick={() => {
+                setIsLoginModalOpen(true);
+                setIsOpen(false);
+              }}
             className="bg-[#0ef] text-black text-lg font-semibold px-4 py-2 rounded transition-all 
               duration-300 hover:bg-[#08c] focus:bg-[#08c] active:bg-[#08c]"
           >
-            Admin Dashboard
+              Login
           </button>
+          )}
         </div>
       )}
 
@@ -68,15 +105,39 @@ const Navbar = () => {
             {item.text}
           </Link>
         ))}
-        {/* Admin Dashboard Button */}
+        {isAuthenticated ? (
+          <>
         <button
           onClick={() => navigate("/admin")}
           className="bg-[#0ef] text-black text-lg font-semibold px-4 py-2 rounded transition-all 
             duration-300 hover:bg-[#08c] focus:bg-[#08c] active:bg-[#08c]"
         >
-          Admin Dashboard
+              Dashboard
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white text-lg font-semibold px-4 py-2 rounded transition-all 
+                duration-300 hover:bg-red-600 focus:bg-red-600 active:bg-red-600"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={() => setIsLoginModalOpen(true)}
+            className="bg-[#0ef] text-black text-lg font-semibold px-4 py-2 rounded transition-all 
+              duration-300 hover:bg-[#08c] focus:bg-[#08c] active:bg-[#08c]"
+          >
+            Login
         </button>
+        )}
       </div>
+
+      {/* Login Modal */}
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+      />
     </nav>
   );
 };
