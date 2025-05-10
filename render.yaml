@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: portfolio-backend
+    env: node
+    buildCommand: cd backend && npm install && npm rebuild sqlite3 --build-from-source
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: JWT_SECRET
+        sync: false
+      - key: DB_PATH
+        value: ./database.sqlite
+
+  - type: web
+    name: portfolio-frontend
+    env: node
+    buildCommand: cd my-app && npm install && npm run build
+    startCommand: cd my-app && npm run preview
+    envVars:
+      - key: VITE_API_URL
+        value: https://portfolio-backend.onrender.com 
