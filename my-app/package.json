@@ -3,9 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "18.20.8"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build || (echo 'Build failed with error code $?' && exit 1)",
     "lint": "eslint .",
     "preview": "vite preview"
   },
