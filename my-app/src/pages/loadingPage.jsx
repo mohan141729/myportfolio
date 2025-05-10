@@ -12,16 +12,16 @@ import FooterSection from "@components/FooterSection";
 const LoadingPage = () => {
   return (
     <div className="bg-[#081b29]">
-      <Navbar />
+    <Navbar />
       <HeroSection />
       <AboutSection />
       <ProjectSection />
       <SkillsSection />
       <ServicesSection />
       <ContactSection />
-      <FooterSection />
-    </div>
-  );
+    <FooterSection />
+  </div>
+);
 };
 
 export default LoadingPage;

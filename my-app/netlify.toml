@@ -4,4 +4,9 @@
   base = "my-app"
 
 [build.environment]
-  NODE_VERSION = "18" 
+  NODE_VERSION = "18.20.8"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 

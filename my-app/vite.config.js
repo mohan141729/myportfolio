@@ -6,7 +6,7 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   css: {
-    postcss: './postcss.config.js'
+    postcss: './postcss.config.cjs'
   },
   resolve: {
     preserveSymlinks: true,
@@ -22,6 +22,7 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     emptyOutDir: true,
+    sourcemap: true,
     rollupOptions: {
       output: {
         manualChunks: undefined,
