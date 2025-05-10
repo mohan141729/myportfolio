@@ -1,5 +1,5 @@
 // API Configuration
-export const API_URL = 'http://localhost:5000';
+export const API_URL = 'https://portfolio-backend-d6u6.onrender.com';
 
 // You can add other configuration variables here
 export const config = {
