@@ -6,7 +6,13 @@ import path from 'path'
 export default defineConfig({
   plugins: [react()],
   css: {
-    postcss: './postcss.config.js',
+    postcss: {
+      plugins: [
+        require('tailwindcss/nesting'),
+        require('tailwindcss'),
+        require('autoprefixer'),
+      ],
+    },
   },
   resolve: {
     preserveSymlinks: true,

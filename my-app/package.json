@@ -26,6 +26,13 @@
     "typed.js": "^2.0.16"
   },
   "devDependencies": {
+    "@babel/generator": "^7.23.6",
+    "@babel/template": "^7.23.9",
+    "@babel/traverse": "^7.23.9",
+    "@types/babel__generator": "^7.6.8",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.5",
+    "@types/prop-types": "^15.7.11",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
