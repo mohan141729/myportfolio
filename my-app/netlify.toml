@@ -1,5 +1,5 @@
 [build]
-  command = "rm -f .nvmrc && npm install && npm run build"
+  command = "npm install -g npm@9.8.1 && npm ci && npm run build"
   publish = "dist"
   base = "my-app"
 
@@ -9,6 +9,7 @@
   NODE_ENV = "production"
   CI = "false"
   NPM_CONFIG_LOGLEVEL = "verbose"
+  NPM_CONFIG_PRODUCTION = "false"
 
 [[redirects]]
   from = "/*"
