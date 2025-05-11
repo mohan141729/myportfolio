@@ -4,12 +4,13 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [react()],
   css: {
     postcss: './postcss.config.cjs'
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.json'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@components': path.resolve(__dirname, 'src/components'),
