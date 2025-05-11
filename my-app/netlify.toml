@@ -1,6 +1,6 @@
 [build]
-  command = "cd my-app && npm cache clean --force && rm -rf node_modules package-lock.json && npm install --no-optional && npm run build"
-  publish = "my-app/dist"
+  command = "npm cache clean --force && rm -rf node_modules package-lock.json && npm install --no-optional && npm run build"
+  publish = "dist"
   base = "my-app"
 
 [build.environment]
