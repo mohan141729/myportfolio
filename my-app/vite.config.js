@@ -22,6 +22,7 @@ export default defineConfig({
     assetsDir: 'assets',
     emptyOutDir: true,
     sourcemap: true,
+    minify: 'terser',
     rollupOptions: {
       output: {
         manualChunks: undefined,
@@ -32,6 +33,7 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom']
+    include: ['react', 'react-dom', 'react-router-dom'],
+    exclude: ['@babel/generator', '@babel/template', '@babel/traverse']
   }
 })
