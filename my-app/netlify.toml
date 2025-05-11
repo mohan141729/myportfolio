@@ -1,5 +1,5 @@
 [build]
-  command = "rm -f .nvmrc && npm install && npm run build"
+  command = "npm install --legacy-peer-deps && npm run build"
   publish = "dist"
   base = "my-app"
 
@@ -7,7 +7,7 @@
   NODE_VERSION = "18.20.8"
   NPM_VERSION = "9.8.1"
   NODE_ENV = "production"
-  MISE_VERBOSE = "1"
+  NPM_CONFIG_LEGACY_PEER_DEPS = "true"
 
 [[redirects]]
   from = "/*"
