@@ -1,5 +1,5 @@
 [build]
-  command = "npm install && npm run build"
+  command = "rm -f .nvmrc && npm install && npm run build"
   publish = "dist"
   base = "my-app"
 
