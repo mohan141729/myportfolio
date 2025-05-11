@@ -1,10 +1,11 @@
 [build]
-  command = "npm cache clean --force && rm -rf node_modules package-lock.json && npm install --no-optional && npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
   base = "my-app"
 
 [build.environment]
   NODE_VERSION = "18.20.8"
+  NPM_VERSION = "9.8.1"
   NODE_ENV = "production"
   CI = "false"
   NPM_CONFIG_LOGLEVEL = "verbose"
