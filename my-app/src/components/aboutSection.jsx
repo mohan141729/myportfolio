@@ -134,7 +134,7 @@ const CircularProgressBar = ({
   );
 };
 
-const About = () => {
+const AboutSection = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
@@ -281,4 +281,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default AboutSection;

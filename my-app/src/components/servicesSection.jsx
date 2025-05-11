@@ -27,7 +27,7 @@ const services = [
   },
 ];
 
-const Services = () => {
+const ServicesSection = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -85,4 +85,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default ServicesSection;
