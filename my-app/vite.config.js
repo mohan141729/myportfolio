@@ -9,9 +9,7 @@ export default defineConfig({
     postcss: './postcss.config.cjs'
   },
   resolve: {
-    preserveSymlinks: true,
-    caseSensitive: true,
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@components': path.resolve(__dirname, './src/components'),
@@ -31,5 +29,8 @@ export default defineConfig({
         assetFileNames: 'assets/[name].[hash].[ext]'
       }
     }
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react-router-dom']
   }
 })
