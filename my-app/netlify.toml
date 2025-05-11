@@ -1,5 +1,5 @@
 [build]
-  command = "cd my-app && npm cache clean --force && rm -rf node_modules package-lock.json && npm install && npm run build"
+  command = "cd my-app && npm cache clean --force && rm -rf node_modules package-lock.json && npm install --no-optional && npm run build"
   publish = "my-app/dist"
   base = "my-app"
 
@@ -7,6 +7,7 @@
   NODE_VERSION = "18.20.8"
   NODE_ENV = "production"
   CI = "false"
+  NPM_CONFIG_LOGLEVEL = "verbose"
 
 [[redirects]]
   from = "/*"
