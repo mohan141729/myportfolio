@@ -11,6 +11,13 @@ const categoryColors = {
     gradient: 'linear-gradient(135deg, #00BFFF, #0080FF)',
     text: '#00BFFF'
   },
+  'AI/ML': {
+    primary: '#3F51B5',
+    secondary: '#5C6BC0',
+    shadow: '0 0 20px rgba(63, 81, 181, 0.5)',
+    gradient: 'linear-gradient(135deg, #3F51B5, #5C6BC0)',
+    text: '#3F51B5'
+  },
   'Mobile Development': {
     primary: '#FF6B6B',
     secondary: '#FF4757',

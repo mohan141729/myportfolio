@@ -49,6 +49,15 @@ const categoryColors = {
     button: '#FFA500',
     gradient: 'linear-gradient(135deg, #FFA500, #f39c12)'
   },
+  'AI/ML': {
+    primary: '#3F51B5',
+    secondary: '#5C6BC0',
+    shadow: '0 0 20px rgba(63, 81, 181, 0.5)',
+    hoverShadow: '0 0 30px rgba(63, 81, 181, 0.7)',
+    text: '#3F51B5',
+    button: '#3F51B5',
+    gradient: 'linear-gradient(135deg, #3F51B5, #5C6BC0)'
+  },
   'Other': {
     primary: '#607D8B',
     secondary: '#34495e',
@@ -124,7 +133,7 @@ const ProjectSection = () => {
   };
 
   return (
-    <section className="text-gray-400 bg-[#081b29] min-h-screen py-16 flex flex-col justify-center relative">
+    <section id="projects" className="text-gray-400 bg-[#081b29] min-h-screen py-16 flex flex-col justify-center relative">
       <div className="container px-5 mx-auto max-w-6xl " >
         <h1 className="text-3xl font-bold text-white mb-8 text-center" data-aos="fade-up">My Projects</h1>
 
@@ -133,9 +142,9 @@ const ProjectSection = () => {
           {categories.map((category) => {
             const categoryColor = category === "All" ? categoryColors['Web Development'] : categoryColors[category] || categoryColors['Other'];
             return (
-              <button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
                 className="group px-6 py-2 rounded-lg text-white transition-all duration-300"
                 style={{
                   background: selectedCategory === category ? categoryColor.gradient : 'rgba(55, 65, 81, 0.8)',
@@ -143,9 +152,9 @@ const ProjectSection = () => {
                   border: `1px solid ${categoryColor.primary}40`,
                   transform: selectedCategory === category ? 'scale(1.05)' : 'scale(1)'
                 }}
-              >
-                {category}
-              </button>
+            >
+              {category}
+            </button>
             );
           })}
         </div>
@@ -174,19 +183,19 @@ const ProjectSection = () => {
             {filteredProjects.map((project, index) => {
               const categoryColor = categoryColors[project.category] || categoryColors['Other'];
               return (
-                <div
-                  key={index}
-                  onClick={() => setSelectedProject(project)}
+              <div
+                key={index}
+                onClick={() => setSelectedProject(project)}
                   className="snap-center flex-none w-72 md:w-80 h-96 relative rounded-lg transition-all duration-300 transform hover:scale-105 overflow-hidden cursor-pointer"
                   style={{
                     boxShadow: categoryColor.shadow,
                     border: `1px solid ${categoryColor.primary}40`,
                     background: categoryColor.gradient
                   }}
-                  data-aos="zoom-in"
-                >
-                  <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-black opacity-40"></div>
+                data-aos="zoom-in"
+              >
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                <div className="absolute inset-0 bg-black opacity-40"></div>
                   <div 
                     className="absolute bottom-0 left-0 p-4 z-10 backdrop-blur-3xl w-[100%]"
                     style={{
@@ -224,16 +233,16 @@ const ProjectSection = () => {
               ? categoryColors['Web Development'] 
               : categoryColors[selectedCategory] || categoryColors['Other'];
             return (
-              <span
-                key={i}
-                onClick={() => handleDotClick(i)}
+            <span
+              key={i}
+              onClick={() => handleDotClick(i)}
                 className="w-3 h-3 rounded-full mx-1 cursor-pointer transition-all duration-300"
                 style={{
                   background: scrollIndex === i ? categoryColor.gradient : 'rgba(107, 114, 128, 0.5)',
                   boxShadow: scrollIndex === i ? categoryColor.shadow : 'none',
                   transform: scrollIndex === i ? 'scale(1.2)' : 'scale(1)'
                 }}
-              ></span>
+            ></span>
             );
           })}
         </div>
@@ -285,19 +294,22 @@ const ProjectSection = () => {
               >
                 <span className="font-bold">Skills:</span> {selectedProject.skills}
               </p>
-              <a
-                href={selectedProject.projectLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-2 rounded transition-all duration-300"
-                style={{
-                  background: categoryColors[selectedProject.category]?.gradient || categoryColors['Other'].gradient,
-                  color: '#000',
-                  boxShadow: categoryColors[selectedProject.category]?.shadow || categoryColors['Other'].shadow
-                }}
-              >
-                View Project
-              </a>
+              <div className="flex flex-wrap gap-4 mt-6">
+                <a
+                  href={selectedProject.projectLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-2 rounded transition-all duration-300"
+                  style={{
+                    background: categoryColors[selectedProject.category]?.gradient || categoryColors['Other'].gradient,
+                    color: '#000',
+                    boxShadow: categoryColors[selectedProject.category]?.shadow || categoryColors['Other'].shadow
+                  }}
+                >
+                  <i className="bx bx-link-external mr-2"></i>
+                  View Project
+                </a>
+              </div>
             </div>
           </div>
         </div>

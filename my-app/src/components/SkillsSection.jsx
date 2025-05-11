@@ -42,6 +42,12 @@ const categoryColors = {
     light: 'rgba(233, 30, 99, 0.1)',
     border: 'rgba(233, 30, 99, 0.3)'
   },
+  'AI/ML': {
+    primary: '#3F51B5',
+    gradient: 'from-indigo-500 to-blue-700',
+    light: 'rgba(63, 81, 181, 0.1)',
+    border: 'rgba(63, 81, 181, 0.3)'
+},
   'Other': {
     primary: '#607D8B',
     gradient: 'from-slate-500 to-gray-600',
@@ -59,7 +65,7 @@ const skillCategories = {
     'SASS', 'SCSS', 'Styled Components', 'Emotion', 'Framer Motion'
   ],
   'Backend': [
-    'Node.js', 'Express', 'Python', 'Django', 'Flask', 'Java', 'Spring Boot',
+    'Node.js', 'Express', 'Django', 'Flask', 'Java', 'Spring Boot',
     'PHP', 'Laravel', 'Ruby', 'Ruby on Rails', 'Go', 'C#', '.NET',
     'REST API', 'GraphQL', 'Socket.io', 'WebSockets', 'JWT', 'OAuth'
   ],
@@ -81,7 +87,13 @@ const skillCategories = {
     'Figma', 'Adobe XD', 'Photoshop', 'Illustrator', 'UI/UX',
     'Wireframing', 'Prototyping', 'Responsive Design', 'Material Design',
     'User Research', 'Accessibility'
-  ]
+  ],
+  'AI/ML': [
+   'Python', 'NumPy', 'Pandas', 'Scikit-learn', 'TensorFlow', 'Keras', 'PyTorch',
+   'OpenCV', 'NLTK', 'spaCy', 'Hugging Face Transformers', 'MLflow', 'Jupyter Notebook',
+   'Data Preprocessing', 'Model Deployment', 'Computer Vision', 'NLP', 'Prompt Engineering',
+   'ChatGPT API', 'LangChain'
+]
 };
 
 const SkillsSection = () => {
