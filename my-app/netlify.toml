@@ -1,11 +1,13 @@
 [build]
-  command = "cd my-app && npm install && npm run build"
+  command = "cd my-app && rm -rf node_modules && npm install --legacy-peer-deps && npm run build"
   publish = "my-app/dist"
   base = "my-app"
 
 [build.environment]
   NODE_VERSION = "18.20.8"
   NPM_FLAGS = "--legacy-peer-deps"
+  NODE_ENV = "production"
+  CI = "false"
 
 [[redirects]]
   from = "/*"
