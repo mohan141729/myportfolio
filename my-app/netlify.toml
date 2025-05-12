@@ -1,13 +1,11 @@
 [build]
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
-  base = "my-app"
 
 [build.environment]
-  NODE_VERSION = "18.20.8"
-  NPM_VERSION = "9.8.1"
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
   NODE_ENV = "production"
-  NPM_CONFIG_LEGACY_PEER_DEPS = "true"
 
 [[redirects]]
   from = "/*"
