@@ -3,8 +3,8 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
-  NPM_VERSION = "9"
+  NODE_VERSION = "18.20.0"
+  NPM_VERSION = "9.8.1"
   NODE_ENV = "production"
 
 [[redirects]]
